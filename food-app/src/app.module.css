@@ -1,0 +1,17 @@
+body {
+  font-family: sans-serif;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.gridApp {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-items: center;
+  gap: 40px;
+}
