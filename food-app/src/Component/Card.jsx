@@ -1,4 +1,6 @@
+import { useState } from "react";
 import styles from "./card.module.css";
+import Button from "./Button";
 
 export default function Card({
   name,
@@ -9,15 +11,34 @@ export default function Card({
   rating,
 }) {
   const diff = "⭐️".repeat(rating);
+  let stylesDiff = "";
+  if (difficulty === "Easy") {
+    stylesDiff = styles.easy;
+  } else if (difficulty === "Medium") {
+    stylesDiff = styles.medium;
+  } else if (difficulty === "Hard") {
+    stylesDiff = styles.hard;
+  }
+  const [styleopacity, setStyleopacity] = useState(styles.opacity);
+
   return (
     <div className={styles}>
       <div key={id} className={styles.container}>
-        <img src={image} width="400"></img>
-        <div className={styles.info}>
+        <div>
+          <img src={image} width="400"></img>
+          <Button setStyleopacity={setStyleopacity} />
+        </div>
+        <div className={`${styles.info} ${styleopacity}`}>
           <h1 className={styles.name}>{name}</h1>
-          <h2 className={styles.ingredients}>{ingredients}</h2>
+          <div>
+            <h2>Ingredient :</h2>
+            <h2 className={styles.ingredients}>{ingredients}</h2>
+          </div>
           <div className={styles.subinfos}>
-            <h3 className={styles.difficulty}>difficulty : {difficulty}</h3>
+            <div>
+              <h3 className={styles.difficulty}>difficulty : {difficulty}</h3>
+              <div className={stylesDiff}></div>
+            </div>
             <h3 className={styles.rating}>{diff}</h3>
           </div>
         </div>
